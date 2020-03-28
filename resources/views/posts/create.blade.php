@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">ITI Blog</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('posts.index')}}">All Posts<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+   
+ 
+</nav>
+
 @section('content')
+{{-- <div class="container h-100"> --}}
+  <div class="row h-50 justify-content-center align-items-center">
+      <div class="col-10 col-md-8 col-lg-6">
 <form method="POST" action="{{route('posts.store')}}">
     @csrf
     <div class="form-group">
@@ -25,4 +39,7 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-@endsection
+      </div>
+  </div>
+{{-- </div> --}}
+  @endsection

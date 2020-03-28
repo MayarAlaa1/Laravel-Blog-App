@@ -30,4 +30,6 @@ Route::post('/posts', 'PostController@store')->name('posts.store');
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 
 Route::delete('posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
+
+Route::delete('posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
  

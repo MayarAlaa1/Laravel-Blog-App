@@ -3,29 +3,30 @@
 
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">ITI Blog</a>
-
-  <!-- <div class="collapse navbar-collapse" id="navbarText"> -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">All Posts<span class="sr-only">(current)</span></a>
       </li>
     </ul>
    
-  <!-- </div> -->
+ 
 </nav>
-
+<br>
 @section('content')
-      <div class="container m-5" style="text-align:center">
-      <a href="{{route('posts.create')}}"  class="btn btn-success mb-5" >Create Post</a>
-          <table class="table">
-              <thead>
+      <div class="d-flex align-content-stretch flex-wrap" style="text-align:center">
+        <div class="container " style="text-align:center">
+      <a href="{{route('posts.create')}}"  class="btn btn-success mb-5" style="align-center" >Create Post</a></div>
+          <table class="table table-hover table-dark" class="mx-auto">
+            <thead class="thead-light">
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Title</th>
                   <th scope="col">Description</th>
                   <th scope="col">User Name</th>
                   <th scope="col">Created At</th>
+                  <th scope="col"></th>
                   <th scope="col">Actions</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
