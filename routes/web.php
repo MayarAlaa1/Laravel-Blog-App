@@ -17,19 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts', 'PostController@index')->name('posts.index');
 
-//route for rendering form
-Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::group(['middleware' => 'auth'], function(){
+
+    Route::get('/posts', 'PostController@index')->name('posts.index');
+
+    //route for rendering form
+    Route::get('/posts/create', 'PostController@create')->name('posts.create');
+    
+    
+    //route for taking the submition and storing the data in db
+    Route::post('/posts', 'PostController@store')->name('posts.store');
+    
+    
+    Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+
+    Route::delete('posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
+});
 
 
-//route for taking the submition and storing the data in db
-Route::post('/posts', 'PostController@store')->name('posts.store');
+Auth::routes();
 
-
-Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
-
-Route::delete('posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
-
-Route::delete('posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
- 
+Route::get('/home', 'HomeController@index')->name('home');

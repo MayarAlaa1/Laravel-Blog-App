@@ -13,6 +13,8 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+
+     //global middlewares (1) dol haytaaba2o globally 3ala ay post
     protected $middleware = [
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
@@ -51,6 +53,8 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+
+     // dol hayaataba2o 3ala haga mo3ayana lama a2ol middlware->('auth') maslan
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

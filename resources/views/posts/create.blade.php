@@ -1,15 +1,5 @@
 @extends('layouts.app')
 
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">ITI Blog</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{route('posts.index')}}">All Posts<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-   
- 
-</nav>
 
 @section('content')
   @if ($errors->any())

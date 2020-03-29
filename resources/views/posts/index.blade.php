@@ -1,17 +1,7 @@
 
 @extends('layouts.app')
 
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">ITI Blog</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">All Posts<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-   
- 
-</nav>
-<br>
+
 @section('content')
       <div class="d-flex align-content-stretch flex-wrap" style="text-align:center">
         <div class="container " style="text-align:center">
