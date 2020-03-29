@@ -22,7 +22,7 @@
                   <th scope="col">ID</th>
                   <th scope="col">Title</th>
                   <th scope="col">Description</th>
-                  <th scope="col">User Name</th>
+                  <th scope="col">Post Author</th>
                   <th scope="col">Created At</th>
                   <th scope="col"></th>
                   <th scope="col">Actions</th>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -40,11 +41,19 @@ class PostController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
         //get the request data
-        $request = request();
+        // $request = request(); replaced with storePostRequest
 
+
+        // $validatedData = $request->validate([
+        //     'title'=>'required|min:3|unique:posts',
+        //     'description' =>'required|min:10'
+        // ],[
+        //     // to overide validation message
+        //     'title.min' => 'The title has to be more than 3 characters'
+        // ]);
         //store the request data in the db
         Post::create([
             'title' => $request->title,
@@ -66,4 +75,14 @@ class PostController extends Controller
         Post::find($postId)->delete();
         return redirect()->route('posts.index');
     }
+
+    // public function edit()
+    // {
+
+    //     return view('edit',[
+    //         'post'=>$post,
+    //         'users'=>$users,
+    //     ]);
+
+    // }
 }

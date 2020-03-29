@@ -12,7 +12,17 @@
 </nav>
 
 @section('content')
-{{-- <div class="container h-100"> --}}
+  @if ($errors->any())
+  {{--  to display error messages --}}
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
+
   <div class="row h-50 justify-content-center align-items-center">
       <div class="col-10 col-md-8 col-lg-6">
 <form method="POST" action="{{route('posts.store')}}">
