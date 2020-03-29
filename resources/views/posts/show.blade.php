@@ -23,7 +23,7 @@
         <div class="card-body">
           <h5 class="card-title">Name: {{$post->user->name}}</h5>
           <p class="card-text">Email: {{$post->user->email}}</p>
-          <h5 class="card-title">Created At: {{$post->created_at}}</h5>
+          <h5 class="card-title">Created At: {{$post->created_at->format('d-m-y')}}</h5>
 
           
         </div>

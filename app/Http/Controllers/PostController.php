@@ -76,13 +76,30 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
-    // public function edit()
-    // {
+    public function edit()
+    {
+        $request = request();
+        $postId = $request->post;
+        $post = Post::find($postId);
+        $users = User::all();
 
-    //     return view('edit',[
-    //         'post'=>$post,
-    //         'users'=>$users,
-    //     ]);
+        return view('posts.edit',[
+            'post'=>$post,
+            'users'=>$users,
+        ]);
 
-    // }
+    }
+
+
+    public function update(StorePostRequest $request, $id)
+    {
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $users = User::all();
+        $post->user_id = $request->user_id;
+        $post->save();
+        //redirect to /posts
+        return redirect()->route('posts.index');
+    }
 }

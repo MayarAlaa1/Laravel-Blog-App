@@ -33,7 +33,7 @@
                 
 
                 <td><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-primary btn-sm">View</a></td>
-                <td><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-warning btn-sm">Edit</a></td>
+                <td><a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-warning btn-sm">Edit</a></td>
                 <td> 
                     <form method="POST" action="{{route('posts.destroy',['post' => $post->id])}}" >
                         @method('DELETE')
