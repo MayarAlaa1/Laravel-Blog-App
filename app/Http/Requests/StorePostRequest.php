@@ -31,8 +31,8 @@ class StorePostRequest extends FormRequest
                 'min:3'
             ],
             
-                    // 'title'=>"required|min:3|unique('posts', 'title')->ignore($this->post)",
-                    'description' =>'required|min:10'
+                    'description' =>'required|min:10',
+                    'user_id'=>'exists:posts'
                 
         ];
     }
@@ -42,7 +42,8 @@ class StorePostRequest extends FormRequest
     {
         return [
                 'title.min' => 'The title should be more than 3 characters !',
-                'description.min' => 'The description should be more than 10 characters !'
+                'description.min' => 'The description should be more than 10 characters !',
+                'user_id.exists' => 'Invalid User!',
             ];
     }
 }
