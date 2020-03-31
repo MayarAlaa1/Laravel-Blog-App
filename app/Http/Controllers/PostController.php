@@ -91,7 +91,7 @@ class PostController extends Controller
         ]);
 
     }
-
+   
 
     public function update(StorePostRequest $request, $id)
     {
