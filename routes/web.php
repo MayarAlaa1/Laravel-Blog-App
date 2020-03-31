@@ -43,3 +43,7 @@ Route::group(['middleware' => 'auth'], function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//used with the button of login to github
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+//used in callback url in github and in services.php
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
