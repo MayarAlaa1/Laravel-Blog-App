@@ -14,9 +14,9 @@ class PostController extends Controller
     {
         // return Post::all();
         return PostResource::collection(
-            Post::paginate()
-//if we need to select how many posts ( here 5 per page)
- //           Post::paginate(5)
+            Post::with('User')->paginate(5)
+//if we need to select total pages 
+ //           Post::paginate()
     
 
         );     
@@ -28,6 +28,17 @@ class PostController extends Controller
             //to return one object from posts and route model binding to print 404 not found
             $post
         );
+    }
+
+    public function store(Request $request)
+    {
+        $post = Post::create([
+            'title' => $request->title,
+            'description' =>  $request->description,
+            'user_id' =>  $request->user_id,
+            
+        ]);
+        return new PostResource($post);
     }
 }
 

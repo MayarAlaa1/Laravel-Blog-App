@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/posts', 'API\PostController@index')->middleware('auth:sanctum');
 Route::get('/posts/{post}', 'API\PostController@show')->middleware('auth:sanctum');
+Route::post('/posts','API\PostController@store')->middleware('auth:sanctum');
 
 
 Route::post('/sanctum/token', function (Request $request) {
