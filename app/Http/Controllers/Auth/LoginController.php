@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use App\User;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -50,17 +52,57 @@ class LoginController extends Controller
         return Socialite::driver('github')->redirect();
     }
 
+    public function redirectToGoogleProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
     /**
      * Obtain the user information from GitHub.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function handleGoogleProviderCallback()
+    {
+        $user = Socialite::driver('google')->stateless()->user();
+        $this->CreateUser($user);
+        
+
+        //   dd($user);
+        // $user->token;
+    }
     public function handleProviderCallback()
     {
         $user = Socialite::driver('github')->user();
-        //some logic to redirect
-        dd($user);
+        $this->CreateUser($user);
+        
+
+        //  dd($user);
         // $user->token;
+    }
+
+    public function CreateUser($user)
+    {
+        $loggedusers=User::where('email',$user->email)->first();
+        if(!$loggedusers)
+        {   
+           $loggedusers=User::create([
+                'name'=>$user->nickname,
+                //this should be $user->name for google login 
+                // 'name'=>$user->name,
+                'email'=>$user->email,
+                'remember_token'=>$user->token,
+                'password'=>"null"
+            ]); 
+            Auth::login($loggedusers);
+            return redirect()->route('posts.index');
+        }
+        else
+        {
+            Auth::login($loggedusers);
+            return redirect()->route('posts.index');
+        }
     }
 
     

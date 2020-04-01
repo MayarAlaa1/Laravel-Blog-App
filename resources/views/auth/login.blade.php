@@ -60,6 +60,10 @@
                                 <a href="/login/github" style="background-color:black; color:white;" class="btn ">
                                     {{ __('Login With Github') }}
                                 </a>
+                                {{-- google login button --}}
+                                <a href="/login/google" style="background-color:red; color:white;" class="btn ">
+                                    {{ __('Login With Google') }}
+                                </a>
                                 <div>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
