@@ -44,14 +44,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 //used with the button of login to github
-Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+// Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+// //used in callback url in github and in services.php
+// Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+
+// //used with the button of login to google
+// Route::get('login/google', 'Auth\LoginController@redirectToGoogleProvider');
+// //used in callback url in google and in services.php
+// Route::get('login/google/callback', 'Auth\LoginController@handleGoogleProviderCallback');
+
+
+Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
 //used in callback url in github and in services.php
-Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
-
-//used with the button of login to google
-Route::get('login/google', 'Auth\LoginController@redirectToGoogleProvider');
-//used in callback url in google and in services.php
-Route::get('login/google/callback', 'Auth\LoginController@handleGoogleProviderCallback');
-
-
-
+Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');

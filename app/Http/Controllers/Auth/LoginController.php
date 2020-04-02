@@ -47,46 +47,54 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+
+    public function redirectToProvider($service)
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
-    public function redirectToGoogleProvider()
-    {
-        return Socialite::driver('google')->redirect();
-    }
 
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // public function redirectToProvider()
+    // {
+    //     return Socialite::driver('github')->redirect();
+    // }
 
-    public function handleGoogleProviderCallback()
-    {
-        $user = Socialite::driver('google')->stateless()->user();
-        $this->CreateUser($user);
+    // public function redirectToGoogleProvider()
+    // {
+    //     return Socialite::driver('google')->redirect();
+    // }
+
+    // /**
+    //  * Obtain the user information from GitHub.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+
+    // public function handleGoogleProviderCallback()
+    // {
+    //     $user = Socialite::driver('google')->stateless()->user();
+    //     $this->CreateUser($user);
         
 
-        //   dd($user);
-        // $user->token;
-    }
-    public function handleProviderCallback()
+    //     //   dd($user);
+    //     // $user->token;
+    // }
+    public function handleProviderCallback($service)
     {
-        $user = Socialite::driver('github')->user();
-        $this->CreateUser($user);
+        $user = Socialite::driver($service)->stateless()->user();
+        $this->CreateUser($user,$service);
         
 
         //  dd($user);
         // $user->token;
     }
 
-    public function CreateUser($user)
+    public function CreateUser($user,$service)
     {
         $loggedusers=User::where('email',$user->email)->first();
         if(!$loggedusers)
         {   
+            if($service === 'github'){
            $loggedusers=User::create([
                 'name'=>$user->nickname,
                 //this should be $user->name for google login 
@@ -94,7 +102,18 @@ class LoginController extends Controller
                 'email'=>$user->email,
                 'remember_token'=>$user->token,
                 'password'=>"null"
-            ]); 
+            ]); }
+
+            else{
+
+                $loggedusers=User::create([
+                    'name'=>$user->name,
+                    'email'=>$user->email,
+                    'remember_token'=>$user->token,
+                    'password'=>"null"
+                ]); 
+
+            }
             Auth::login($loggedusers);
             return redirect()->route('posts.index');
         }
