@@ -57,6 +57,7 @@ class PostController extends Controller
         //     'title.min' => 'The title has to be more than 3 characters'
         // ]);
         //store the request data in the db
+        $request->only('title', 'description', 'user_id');
         Post::create([
             'title' => $request->title,
             'description' =>  $request->description,
